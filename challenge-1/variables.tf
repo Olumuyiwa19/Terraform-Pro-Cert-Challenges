@@ -1,16 +1,24 @@
 
-variable "environement" {
-  type = number
+variable "environment" {
+  type = string
 }
 
 variable "s3_buckets" {
-  type = list(any)
+  type = set(string)
 }
 
-variable "s3_base_object" {}
+variable "s3_base_object" {
+  type = string
+}
 
-variable "sg_name" {}
+variable "sg_name" {
+  type = string
+}
 
-variable "org-name" {}
+variable "org-name" {
+  type = string
+}
 
-variable "region" {}
+variable "region" {
+  type = string
+}

@@ -11,10 +11,11 @@ provider "aws" {
   region = "us-east-1"
   default_tags {
     tags = {
-      Environment = var.environement
+      Environment = var.environment
     }
   }
 }
+
 resource "random_pet" "this" {}
 
 resource "aws_iam_user" "lb" {
@@ -26,7 +27,7 @@ resource "aws_iam_user" "lb" {
 
 resource "aws_iam_user_policy" "lb_ro" {
   name = "ec2-describe-policy"
-  user = aws_iam_user.lb.*.name
+  user = aws_iam_user.lb[0].name
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -41,24 +42,23 @@ resource "aws_iam_user_policy" "lb_ro" {
   })
 }
 
-
-resource "aws_s3_bucket" "example" {
-  for_each = toset([var.s3_buckets])
-  bucket   = "${random_pet.this.id}-${each.value}"
+resource "aws_s3_bucket" "muyi_bucket" {
+  for_each = var.s3_buckets
+  bucket   = "${random_pet.this.id}-${each.key}"
 }
 
 resource "aws_s3_object" "object" {
-  for_each = toset([var.s3_buckets])
-  bucket   = aws_s3_bucket.example[each.key].id
+  for_each = var.s3_buckets
+  bucket   = aws_s3_bucket.muyi_bucket[each.key].id
   key      = var.s3_base_object
 }
 
-resource "aws_security_group" "example" {
+resource "aws_security_group" "muyi_sg" {
   name = var.sg_name
 }
 
-resource "aws_vpc_security_group_ingress_rule" "example" {
-  security_group_id = aws_security_group.example.id
+resource "aws_vpc_security_group_ingress_rule" "muyi_sg_rule" {
+  security_group_id = aws_security_group.muyi_sg.id
 
   cidr_ipv4   = "10.0.0.0/8"
   from_port   = 80

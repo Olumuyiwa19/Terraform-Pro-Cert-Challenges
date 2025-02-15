@@ -1,8 +1,8 @@
 {
-    "environement": "production",
-    "region": "us-east-1c",
-    "s3_buckets": ["kplabs-2025-1","kplabs-2025-2"],
-    "org-name" : "kplabs",
-    "sg_name": "kplabs-sg",
+    "environment": "prod",
+    "region": "us-east-1",
+    "s3_buckets": ["muyilabs-2025-1","muyilabs-2025-2"],
+    "org-name" : "muyicom",
+    "sg_name": "muyilabs-sg",
     "s3_base_object": "base.txt"
 }
