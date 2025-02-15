@@ -9,6 +9,8 @@ variable "s3_buckets" {
 
 variable "s3_base_object" {}
 
+variable "sg_name" {}
+
 variable "org-name" {}
 
 variable "region" {}
