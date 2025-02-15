@@ -1,7 +1,7 @@
 {
     "environement": "production",
     "region": "us-east-1c",
-    "s3_buckets": ["kplabs-1","kplabs-2"],
+    "s3_buckets": ["kplabs-2025-1","kplabs-2025-2"],
     "org-name" : "kplabs",
     "sg_name": "kplabs-sg",
     "s3_base_object": "base.txt"
