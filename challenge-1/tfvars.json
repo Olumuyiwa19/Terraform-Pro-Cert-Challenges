@@ -4,5 +4,6 @@
     "s3_buckets": ["muyilabs-2025-1","muyilabs-2025-2"],
     "org-name" : "muyicom",
     "sg_name": "muyilabs-sg",
-    "s3_base_object": "base.txt"
+    "s3_base_object": "new.txt",
+    "s3_object_content": "Success"
 }

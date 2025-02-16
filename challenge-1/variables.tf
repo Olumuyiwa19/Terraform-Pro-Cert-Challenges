@@ -7,6 +7,11 @@ variable "s3_buckets" {
   type = set(string)
 }
 
+
+variable "s3_object_content" {
+  type = string
+}
+
 variable "s3_base_object" {
   type = string
 }
