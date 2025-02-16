@@ -47,8 +47,9 @@ resource "aws_iam_user_policy" "lb_ro" {
 
 
 resource "aws_s3_bucket" "muyi_bucket" {
-  for_each = var.s3_buckets
-  bucket   = "${random_pet.this.id}-${each.key}"
+  for_each      = var.s3_buckets
+  bucket        = "${random_pet.this.id}-${each.key}"
+  force_destroy = true
 }
 
 removed {
