@@ -1,10 +1,10 @@
 
-variable "environement" {
+variable "environment" {
   type = string
 }
 
 variable "s3_buckets" {
-    type = set(string)
+  type = set(string)
 }
 
 variable "s3_base_object" {}
