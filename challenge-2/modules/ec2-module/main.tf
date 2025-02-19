@@ -46,6 +46,6 @@ data "aws_ami" "this" {
 resource "aws_instance" "this" {
   ami                  = data.aws_ami.this.id
   instance_type        = local.instance_type
-  iam_instance_profile = "test_profile" #aws_iam_instance_profile.test_profile.name
+  iam_instance_profile = var.instance_profile
 
 }

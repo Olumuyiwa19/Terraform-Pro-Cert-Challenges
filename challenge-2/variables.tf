@@ -14,3 +14,7 @@ variable "org-name" {}
 variable "region" {}
 
 variable "sg_name" {}
+
+variable "iam_role_name" {}
+
+variable "instance_profile" {}

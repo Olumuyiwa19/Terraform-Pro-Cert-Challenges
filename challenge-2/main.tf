@@ -17,14 +17,18 @@ provider "aws" {
 }
 
 module "ec2" {
-  source      = "./modules/ec2-module"
-  environment = var.environment
+  source           = "./modules/ec2-module"
+  environment      = var.environment
+  instance_profile = module.iam.instance_profile
 }
 
 module "iam" {
-  source      = "./modules/iam-module"
-  environment = var.environment
-  org-name    = var.org-name
+  source           = "./modules/iam-module"
+  environment      = var.environment
+  org-name         = var.org-name
+  iam_role_name    = var.iam_role_name
+  instance_profile = var.instance_profile
+  random_pet       = module.random.random_pet
 }
 
 module "random" {
@@ -38,9 +42,9 @@ module "sg" {
 }
 
 module "s3" {
-  #for_each       = toset([var.s3_buckets])
   source         = "./modules/s3-module"
-  s3_buckets     = ["var.s3_buckets"]
+  s3_buckets     = toset(var.s3_buckets)
   s3_base_object = var.s3_base_object
   environment    = var.environment
+  random_pet     = module.random.random_pet
 }

@@ -19,7 +19,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "example" {
   for_each = var.s3_buckets
-  bucket   = "wired-marmoset-${each.value}"
+  bucket   = "${var.random_pet}-${each.value}"
 }
 
 resource "aws_s3_object" "object" {

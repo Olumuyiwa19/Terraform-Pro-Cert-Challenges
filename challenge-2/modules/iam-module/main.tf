@@ -31,18 +31,18 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "test_role" {
-  name               = "ec2-iam-role"
+  name               = var.iam_role_name
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
-  name = "test_profile"
+  name = var.instance_profile
   role = aws_iam_role.test_role.name
 }
 
 resource "aws_iam_user" "lb" {
   count = 3
-  name  = "wired-marmoset-${var.org-name}-${count.index}"
+  name  = "${var.random_pet}-${var.org-name}-${count.index}"
 }
 
 # This policy must be associated with all IAM users created through this code.

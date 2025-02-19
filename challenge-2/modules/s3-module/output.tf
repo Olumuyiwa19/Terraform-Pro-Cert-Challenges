@@ -1,4 +1,3 @@
 output "bucket_name" {
-  value = aws_s3_bucket.example.id
-
+  value = [for name in aws_s3_bucket.example : name.bucket]
 }
